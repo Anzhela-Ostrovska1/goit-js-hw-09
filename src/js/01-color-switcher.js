@@ -6,27 +6,25 @@ stopButton.addEventListener('click', stop);
 
 const timer = 1000;
 let intervalId = null;
-isDisabled = false;
+
+stopButton.disabled = true;
+startButton.disabled = false;
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
 function start() {
-  isDisabled = !isDisabled;
-  startButton.disabled = isDisabled;
+  startButton.disabled = true;
   stopButton.disabled = false;
-
   intervalId = setInterval(() => {
     document.body.style.backgroundColor = getRandomHexColor();
   }, timer);
 }
 
 function stop() {
-  isDisabled = !isDisabled;
-  startButton.disabled = isDisabled;
   stopButton.disabled = true;
-
+  startButton.disabled = false;
   clearInterval(intervalId);
   intervalId = null;
 }
